@@ -1,10 +1,16 @@
 import Fastify from 'fastify';
+import fastifyAuth0Verify from 'fastify-auth0-verify';
 import { toInt } from 'lib';
-import { exampleRoutes } from './routes';
+import { discoveryRoutes } from './routes';
 
 const fastify = Fastify({ logger: true });
 
-fastify.register(exampleRoutes);
+fastify.register(fastifyAuth0Verify, {
+  domain: process.env.AUTH0_DOMAIN,
+  audience: process.env.AUTH0_AUDIENCE,
+});
+
+fastify.register(discoveryRoutes);
 
 (async () => {
   try {

@@ -11,8 +11,13 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
+    "@fastify/type-provider-typebox": "^2.3.0",
+    "@sinclair/typebox": "^0.24.28",
+    "dotenv": "^16.0.1",
     "fastify": "^4.12.0",
-    "lib": "*"
+    "fastify-auth0-verify": "^0.8.0",
+    "lib": "*",
+    "nanoid": "^3.3.4"
   },
   "devDependencies": {
     "@types/jest": "^29.4.0",

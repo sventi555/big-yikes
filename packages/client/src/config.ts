@@ -1,5 +1,12 @@
 interface Environment {
-  apiHost: string;
+  auth: {
+    auth0Audience: string;
+    auth0ClientId: string;
+    auth0Domain: string;
+  };
+  hosts: {
+    api: string;
+  };
 }
 
 declare global {
@@ -15,7 +22,17 @@ declare global {
 const config =
   globalThis.ENV ||
   ({
-    apiHost: import.meta.env['VITE_API_HOST'],
+    auth: {
+      auth0Audience:
+        import.meta.env.VITE_AUTH0_AUDIENCE || 'https://api.bigyikes.ca',
+      auth0ClientId:
+        import.meta.env.VITE_AUTH0_CLIENT_ID ||
+        'tS3GvrFqCYfvb6sDB3W4TeiJo2UcPIat',
+      auth0Domain: import.meta.env.VITE_AUTH0_DOMAIN || 'sventico.auth0.com',
+    },
+    hosts: {
+      api: import.meta.env.VITE_API_HOST || '/api',
+    },
   } as Environment);
 
 export default config;
