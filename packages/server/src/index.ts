@@ -7,6 +7,11 @@ import { discoveryRoutes } from './routes';
 
 const fastify = Fastify({ logger: true });
 
+fastify.setErrorHandler((error, request, reply) => {
+  fastify.log.error(error);
+  reply.status(500).send();
+});
+
 fastify.register(cors);
 
 fastify.register(fastifyAuth0Verify, {
